@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('shared.meta')
+    <link href="{{ mix('/css/front.css') }}" rel="stylesheet">
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">
 @include('shared.header')
