@@ -14,3 +14,12 @@ if problem with autoload file
 $ composer dump-autoload
 ```
 
+## config ##
+
+edit your .env file
+
+```
+CACHE_DRIVER=memcached
+
+```
+
