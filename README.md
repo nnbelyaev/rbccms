@@ -32,3 +32,14 @@ CACHE_DRIVER=memcached
 
 ```
 
+next step create db tables
+
+```bash
+$ php artisan migrate
+```
+
+if your want generate demo data run command
+
+```bash
+$ php artisan migrate --seed
+```
