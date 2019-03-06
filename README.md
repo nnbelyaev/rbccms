@@ -16,6 +16,15 @@ $ composer dump-autoload
 
 ## config ##
 
+rename .env.example to .env
+
+run command
+
+```bash
+$ php artisan key:generate
+```
+
+
 edit your .env file
 
 ```
