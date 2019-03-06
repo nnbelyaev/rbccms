@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Dimsav\Translatable\TranslatableServiceProvider::class,
 
         /*
          * Application Service Providers...
