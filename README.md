@@ -43,3 +43,9 @@ if your want generate demo data run command
 ```bash
 $ php artisan migrate --seed
 ```
+
+run npm update
+
+```bash
+$ npm update
+```
