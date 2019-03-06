@@ -3,7 +3,7 @@
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
     Route::get('/', 'IndexController@index')->name('main');
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/manage', 'Manage\IndexController@indexAction')->name('manage.home');
     Auth::routes();
     Route::get('/news', 'NewsController@index')->name('news');
     Route::get('/all-news', 'NewsController@allnews')->name('news.all');
@@ -12,6 +12,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     Route::get('/{rubric}/{publication}', 'PublicationController@show')->where(['rubric' => '[a-z0-9\-]+', 'publication' => '[a-z0-9\-\.]+'])->name('publication.show');
 
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
