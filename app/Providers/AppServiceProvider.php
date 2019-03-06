@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if (isset($_SERVER['HTTP_HOST'])) {
+            \Log::info("REQUESTED URL", ["http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"]);
+        }
     }
 
     /**
@@ -23,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \DB::listen(function ($query) {
+            \Log::info('SQL', [
+                $query->sql,
+                $query->bindings,
+                $query->time
+            ]);
+        });
     }
 }

@@ -77,4 +77,17 @@ class Kernel extends HttpKernel
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
     ];
+
+    /**
+     * Call the terminate method on any terminable middleware.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
+     * @return void
+     */
+    public function terminate($request, $response)
+    {
+        parent::terminate($request, $response);
+        \Log::info('TOTAL TIME', [(microtime(true) - LARAVEL_START)]);
+    }
 }
