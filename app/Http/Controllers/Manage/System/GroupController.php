@@ -23,7 +23,14 @@ class GroupController extends Controller
      */
     public function indexAction()
     {
+        echo 11111;
+        exit;
         return view('manage.home');
+    }
+
+    public function index() {
+        echo 22;
+
     }
 
     public function anothertestAction() {

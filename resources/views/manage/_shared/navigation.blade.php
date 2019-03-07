@@ -9,17 +9,21 @@
             <span aria-hidden="true"></span>
         </a>
     </div>
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-menu">
         <div class="navbar-start">
             @foreach ($allowedResources as $module => $controllers)
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">{{ __('manage.module-'.$module) }}</a>
-                    <div class="navbar-dropdown">
-                        @foreach ($controllers as $controller => $actions)
-                            <a class="navbar-link">{{ __('manage.module-'.$module.'-'.$controller) }}</a>
-                        @endforeach
+                @if ($module == 'default')
+                    <a href="{{ route('manage.home') }}" class="navbar-item">Home</a>
+                @else
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">{{ __('manage.module-'.$module) }}</a>
+                        <div class="navbar-dropdown">
+                            @foreach ($controllers as $controller => $actions)
+                                <a href="{{ route('manage.'.$module.'.'.$controller.'.index') }}" class="navbar-link">{{ __('manage.module-'.$module.'-'.$controller) }}</a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
             @endforeach
         </div>
 

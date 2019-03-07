@@ -29,4 +29,8 @@ class UserController extends Controller
     public function testAction() {
 
     }
+
+    public function index() {
+
+    }
 }
