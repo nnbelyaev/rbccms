@@ -10,6 +10,10 @@
                 </div>
             @endif
             You are logged in!
+            @can('test')
+                <a href="dsfsd">dsfsdfdfds</a>
+            @endcan
+
         </div>
     </article>
 @endsection
