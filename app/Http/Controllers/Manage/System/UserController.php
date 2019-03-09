@@ -16,21 +16,15 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function indexAction()
+
+    public function test() {
+
+    }
+
+    public function index()
     {
-        return view('manage.home');
-    }
-
-    public function testAction() {
-
-    }
-
-    public function index() {
+        echo 1111;
+        exit;
 
     }
 }

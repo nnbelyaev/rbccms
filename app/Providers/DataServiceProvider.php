@@ -55,7 +55,7 @@ class DataServiceProvider extends ServiceProvider
             $view->with('dataHelper', $this->app->get('DataHelper'));
             $view->with('lang', \App::getLocale());
         });
-        $this->app['view']->composer('manage._shared.navigation', function($view) {
+        $this->app['view']->composer(['manage._shared.navigation','manage.system.group.create','manage.system.group.edit'], function($view) {
             $view->with('allowedResources', $this->app->get('DataHelper')->getAllowedResources());
         });
     }

@@ -13,7 +13,7 @@
         <div class="navbar-start">
             @foreach ($allowedResources as $module => $controllers)
                 @if ($module == 'default')
-                    <a href="{{ route('manage.home') }}" class="navbar-item">Home</a>
+                    <a href="{{ route('manage.home') }}" class="navbar-item">Главная</a>
                 @else
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">{{ __('manage.module-'.$module) }}</a>
@@ -26,7 +26,6 @@
                 @endif
             @endforeach
         </div>
-
         <div class="navbar-end">
             <div class="navbar-item">
                 @guest
@@ -55,4 +54,12 @@
             </div>
         </div>
     </div>
+</nav>
+<nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+        <li><a href="{{ route('manage.home') }}">Главная</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Components</a></li>
+        <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+    </ul>
 </nav>

@@ -10,8 +10,8 @@
 </head>
 <body>
     <div id="manage">
-        @include('manage._shared.navigation')
         <div class="container">
+            @include('manage._shared.navigation')
             @yield('content')
         </div>
     </div>

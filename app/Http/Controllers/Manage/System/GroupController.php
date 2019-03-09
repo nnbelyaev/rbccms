@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage\System;
 
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,24 +17,14 @@ class GroupController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function indexAction()
+
+    public function index()
     {
-        echo 11111;
-        exit;
-        return view('manage.home');
+        $roles = Role::paginate(15);
+        return view('manage.system.group.index', compact('roles'));
     }
 
-    public function index() {
-        echo 22;
-
-    }
-
-    public function anothertestAction() {
-
+    public function create() {
+        return view('manage.system.group.create');
     }
 }

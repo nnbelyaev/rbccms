@@ -45,10 +45,8 @@ class DataHelper {
                 if ($namespace == 'app\http\controllers\manage') $namespace = 'default';
                 $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
                 foreach ($methods as $method) {
-                    if (preg_match('/^([a-z]+)Action$/', $method->getName(), $matches)) {
-                        if ($matches[1] != 'call') {
-                            $actions[$namespace][$conBaseName][] = $matches[1];
-                        }
+                    if ($method->class == (string)$class->name && $method->getName() != '__construct') {
+                        $actions[$namespace][$conBaseName][] = $method->getName();
                     }
                 }
             }
