@@ -30,10 +30,11 @@ class DataHelper {
         return route('publication.show', ['rubric' => $this->rubricsDict->find($publication->rubric_id)->slug, 'publication' => $publication->slug]);
     }
 
-    public function getAllowedResources() {
+    //ToDo add cache for this
+    public function getPermissions($allowCache = true, $flatten = false) {
         $path = app_path().'/Http/Controllers/Manage';
 
-        $actions = [];
+        $permissions = [];
         $objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach($objects as $name => $fObject){
             if ($fObject->isFile()) {
@@ -46,34 +47,15 @@ class DataHelper {
                 $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
                 foreach ($methods as $method) {
                     if ($method->class == (string)$class->name && $method->getName() != '__construct') {
-                        $actions[$namespace][$conBaseName][] = $method->getName();
+                        if ($flatten) {
+                            $permissions[] = 'manage.'.$namespace.'.'.$conBaseName.'.'.$method->getName();
+                        } else {
+                            $permissions[$namespace][$conBaseName][] = $method->getName();
+                        }
                     }
                 }
             }
         }
-        return $actions;
-    }
-
-    public static function getDirFilesRecursive($path, $filterRegExp = null, $dirsOnly = false, &$tmpArr = array())
-    {
-        foreach (new RecursiveDirectoryIterator($path) as $child) {
-            if ($child->isFile()) {
-                if (! $dirsOnly) {
-                    $pathname = realpath($child->getPathname());
-                    if (is_null($filterRegExp) || preg_match($filterRegExp, $pathname)) {
-                        $tmpArr[] = $pathname;
-                    }
-                }
-            } else {
-                if ($dirsOnly && $child->isDir()) {
-                    $pathname = realpath($child->getPathname());
-                    if (is_null($filterRegExp) || preg_match($filterRegExp, $pathname)) {
-                        $tmpArr[] = $pathname;
-                    }
-                }
-                self::getDirFilesRecursive($child, $filterRegExp, $dirsOnly, $tmpArr);
-            }
-        }
-        return $tmpArr;
+        return $permissions;
     }
 }

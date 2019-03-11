@@ -4,7 +4,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
     Route::get('/', 'IndexController@index')->name('main');
     Route::group(['prefix' => 'manage'], function () {
-        Route::get('/', 'Manage\IndexController@indexAction')->name('manage.home');
+        Route::get('/', 'Manage\IndexController@index')->name('manage.home');
         Route::group(['prefix' => 'system'], function () {
             Route::resource('group', 'Manage\System\GroupController', ['as' => 'manage.system']);
             Route::resource('user', 'Manage\System\UserController', ['as' => 'manage.system']);

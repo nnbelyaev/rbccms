@@ -7,41 +7,49 @@
         <div class="field">
             <label class="label">Название группы</label>
             <div class="control">
-                <input class="input" type="text" name="name" placeholder="Название группы">
+                <input class="input {{ $errors->has('name') ? ' is-danger' : '' }}" type="text" name="name" placeholder="Название группы" value="{{ old('name') }}" required autofocus>
             </div>
+            @if ($errors->has('name'))
+                <p class="help is-danger">{{ $errors->first('name') }}</p>
+            @endif
         </div>
         <div class="field">
             <label class="label">Описание группы</label>
             <div class="control">
-                <input class="input is-danger" type="text" name="label" placeholder="Описание группы" value="">
+                <input class="input {{ $errors->has('label') ? ' is-danger' : '' }}" type="text" name="label" placeholder="Описание группы" value="{{ old('label') }}" required>
             </div>
-            <p class="help is-danger">This email is invalid</p>
+            @if ($errors->has('label'))
+                <p class="help is-danger">{{ $errors->first('label') }}</p>
+            @endif
         </div>
         <div class="field">
             <label class="label">Права доступа</label>
-            <div class="control">
+            <div class="control" style="margin-bottom: 60px">
                 <ul>
                     @foreach ($allowedResources as $module => $controllers)
                         <li>
-                            {{ $module }}
-                            <ul>
+                            <span><strong>{{ $module }}</strong></span>
+                            <ul style="padding-left:40px;">
                                 @foreach ($controllers as $controller => $methods)
                                     <li>
-                                        {{ $controller }}
-                                        @foreach ($methods as $method)
-                                            <span>
-                                                <label><input type="checkbox"> {{$module.'.'.$controller.'.'.$method}}</label>
-                                            </span>
-                                        @endforeach
+                                        <span><strong>{{ $controller }}</strong></span>
+                                        <ul style="padding-left:40px;">
+                                            @foreach ($methods as $method)
+                                                <span style="display: inline-block;margin-right:20px;">
+                                                    <label><input name="permission[]" value="{{ $module.'|'.$controller.'|'.$method}}" type="checkbox"> {{$module.'.'.$controller.'.'.$method}}</label>
+                                                </span>
+                                            @endforeach
+                                        </ul>
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
                     @endforeach
                 </ul>
-                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
             </div>
         </div>
+
+        @include('manage._shared.errors')
 
         <div class="field is-grouped">
             <div class="control">

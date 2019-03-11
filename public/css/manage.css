@@ -1,5 +1,229 @@
 @charset "UTF-8";
 
+.m-t-0 {
+  margin-top: 0px;
+}
+
+.p-t-0 {
+  padding-top: 0px;
+}
+
+.m-l-0 {
+  margin-left: 0px;
+}
+
+.p-l-0 {
+  padding-left: 0px;
+}
+
+.m-b-0 {
+  margin-bottom: 0px;
+}
+
+.p-b-0 {
+  padding-bottom: 0px;
+}
+
+.m-r-0 {
+  margin-right: 0px;
+}
+
+.p-r-0 {
+  padding-right: 0px;
+}
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.p-t-10 {
+  padding-top: 10px;
+}
+
+.m-l-10 {
+  margin-left: 10px;
+}
+
+.p-l-10 {
+  padding-left: 10px;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.p-b-10 {
+  padding-bottom: 10px;
+}
+
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.p-r-10 {
+  padding-right: 10px;
+}
+
+.m-t-15 {
+  margin-top: 15px;
+}
+
+.p-t-15 {
+  padding-top: 15px;
+}
+
+.m-l-15 {
+  margin-left: 15px;
+}
+
+.p-l-15 {
+  padding-left: 15px;
+}
+
+.m-b-15 {
+  margin-bottom: 15px;
+}
+
+.p-b-15 {
+  padding-bottom: 15px;
+}
+
+.m-r-15 {
+  margin-right: 15px;
+}
+
+.p-r-15 {
+  padding-right: 15px;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.p-t-20 {
+  padding-top: 20px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
+}
+
+.p-l-20 {
+  padding-left: 20px;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.p-b-20 {
+  padding-bottom: 20px;
+}
+
+.m-r-20 {
+  margin-right: 20px;
+}
+
+.p-r-20 {
+  padding-right: 20px;
+}
+
+.m-t-25 {
+  margin-top: 25px;
+}
+
+.p-t-25 {
+  padding-top: 25px;
+}
+
+.m-l-25 {
+  margin-left: 25px;
+}
+
+.p-l-25 {
+  padding-left: 25px;
+}
+
+.m-b-25 {
+  margin-bottom: 25px;
+}
+
+.p-b-25 {
+  padding-bottom: 25px;
+}
+
+.m-r-25 {
+  margin-right: 25px;
+}
+
+.p-r-25 {
+  padding-right: 25px;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+.p-t-30 {
+  padding-top: 30px;
+}
+
+.m-l-30 {
+  margin-left: 30px;
+}
+
+.p-l-30 {
+  padding-left: 30px;
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
+}
+
+.p-b-30 {
+  padding-bottom: 30px;
+}
+
+.m-r-30 {
+  margin-right: 30px;
+}
+
+.p-r-30 {
+  padding-right: 30px;
+}
+
+.m-t-50 {
+  margin-top: 50px;
+}
+
+.p-t-50 {
+  padding-top: 50px;
+}
+
+.m-l-50 {
+  margin-left: 50px;
+}
+
+.p-l-50 {
+  padding-left: 50px;
+}
+
+.m-b-50 {
+  margin-bottom: 50px;
+}
+
+.p-b-50 {
+  padding-bottom: 50px;
+}
+
+.m-r-50 {
+  margin-right: 50px;
+}
+
+.p-r-50 {
+  padding-right: 50px;
+}
+
 /*! bulma.io v0.7.4 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
@@ -572,210 +796,210 @@ table th {
 }
 
 .is-size-1 {
-  font-size: 3rem !important;
+  font-size: 0 !important;
 }
 
 .is-size-2 {
-  font-size: 2.5rem !important;
+  font-size: 10 !important;
 }
 
 .is-size-3 {
-  font-size: 2rem !important;
+  font-size: 15 !important;
 }
 
 .is-size-4 {
-  font-size: 1.5rem !important;
+  font-size: 20 !important;
 }
 
 .is-size-5 {
-  font-size: 1.25rem !important;
+  font-size: 25 !important;
 }
 
 .is-size-6 {
-  font-size: 1rem !important;
+  font-size: 30 !important;
 }
 
 .is-size-7 {
-  font-size: 0.75rem !important;
+  font-size: 50 !important;
 }
 
 @media screen and (max-width: 768px) {
   .is-size-1-mobile {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-mobile {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-mobile {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-mobile {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-mobile {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-mobile {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-mobile {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
 @media screen and (min-width: 769px), print {
   .is-size-1-tablet {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-tablet {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-tablet {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-tablet {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-tablet {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-tablet {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-tablet {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
 @media screen and (max-width: 1087px) {
   .is-size-1-touch {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-touch {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-touch {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-touch {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-touch {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-touch {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-touch {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
 @media screen and (min-width: 1088px) {
   .is-size-1-desktop {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-desktop {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-desktop {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-desktop {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-desktop {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-desktop {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-desktop {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .is-size-1-widescreen {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-widescreen {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-widescreen {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-widescreen {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-widescreen {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-widescreen {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-widescreen {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
 @media screen and (min-width: 1472px) {
   .is-size-1-fullhd {
-    font-size: 3rem !important;
+    font-size: 0 !important;
   }
 
   .is-size-2-fullhd {
-    font-size: 2.5rem !important;
+    font-size: 10 !important;
   }
 
   .is-size-3-fullhd {
-    font-size: 2rem !important;
+    font-size: 15 !important;
   }
 
   .is-size-4-fullhd {
-    font-size: 1.5rem !important;
+    font-size: 20 !important;
   }
 
   .is-size-5-fullhd {
-    font-size: 1.25rem !important;
+    font-size: 25 !important;
   }
 
   .is-size-6-fullhd {
-    font-size: 1rem !important;
+    font-size: 30 !important;
   }
 
   .is-size-7-fullhd {
-    font-size: 0.75rem !important;
+    font-size: 50 !important;
   }
 }
 
@@ -5734,31 +5958,31 @@ a.tag:hover {
 }
 
 .title.is-1 {
-  font-size: 3rem;
+  font-size: 0;
 }
 
 .title.is-2 {
-  font-size: 2.5rem;
+  font-size: 10;
 }
 
 .title.is-3 {
-  font-size: 2rem;
+  font-size: 15;
 }
 
 .title.is-4 {
-  font-size: 1.5rem;
+  font-size: 20;
 }
 
 .title.is-5 {
-  font-size: 1.25rem;
+  font-size: 25;
 }
 
 .title.is-6 {
-  font-size: 1rem;
+  font-size: 30;
 }
 
 .title.is-7 {
-  font-size: 0.75rem;
+  font-size: 50;
 }
 
 .subtitle {
@@ -5778,31 +6002,31 @@ a.tag:hover {
 }
 
 .subtitle.is-1 {
-  font-size: 3rem;
+  font-size: 0;
 }
 
 .subtitle.is-2 {
-  font-size: 2.5rem;
+  font-size: 10;
 }
 
 .subtitle.is-3 {
-  font-size: 2rem;
+  font-size: 15;
 }
 
 .subtitle.is-4 {
-  font-size: 1.5rem;
+  font-size: 20;
 }
 
 .subtitle.is-5 {
-  font-size: 1.25rem;
+  font-size: 25;
 }
 
 .subtitle.is-6 {
-  font-size: 1rem;
+  font-size: 30;
 }
 
 .subtitle.is-7 {
-  font-size: 0.75rem;
+  font-size: 50;
 }
 
 .heading {

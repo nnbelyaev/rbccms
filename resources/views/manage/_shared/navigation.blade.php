@@ -15,14 +15,26 @@
                 @if ($module == 'default')
                     <a href="{{ route('manage.home') }}" class="navbar-item">Главная</a>
                 @else
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">{{ __('manage.module-'.$module) }}</a>
-                        <div class="navbar-dropdown">
-                            @foreach ($controllers as $controller => $actions)
-                                <a href="{{ route('manage.'.$module.'.'.$controller.'.index') }}" class="navbar-link">{{ __('manage.module-'.$module.'-'.$controller) }}</a>
-                            @endforeach
+                    @php
+                        $items = [];
+                    @endphp
+                    @foreach ($controllers as $controller => $actions)
+                        @can('manage.'.$module.'.'.$controller.'.index')
+                            @php
+                                $items[route('manage.'.$module.'.'.$controller.'.index')] = __('manage.module-'.$module.'-'.$controller);
+                            @endphp
+                        @endcan
+                    @endforeach
+                    @if (sizeof($items))
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">{{ __('manage.module-'.$module) }}</a>
+                            <div class="navbar-dropdown">
+                                @foreach ($items as $link => $title)
+                                    <a href="{{ $link }}" class="navbar-link">{{ $title }}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endif
             @endforeach
         </div>

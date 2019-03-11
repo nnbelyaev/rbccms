@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="title">Управление группами пользователей</h1>
-    <a href="{{ route('manage.system.group.create') }}" class="button is-primary">Создать группу</a>
+    <a href="{{ route('manage.system.group.create') }}" class="button is-primary m-b-30">Создать группу</a>
 
     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
