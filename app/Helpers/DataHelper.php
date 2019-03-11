@@ -46,7 +46,7 @@ class DataHelper {
                 if ($namespace == 'app\http\controllers\manage') $namespace = 'default';
                 $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
                 foreach ($methods as $method) {
-                    if ($method->class == (string)$class->name && $method->getName() != '__construct') {
+                    if ($method->class == (string)$class->name && $method->getName() != '__construct' && $method->class != 'App\Http\Controllers\Manage\Controller') {
                         if ($flatten) {
                             $permissions[] = 'manage.'.$namespace.'.'.$conBaseName.'.'.$method->getName();
                         } else {

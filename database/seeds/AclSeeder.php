@@ -31,6 +31,15 @@ class AclSeeder extends Seeder
         $roleEditor->name = 'Editor';
         $roleEditor->save();
 
+        $helper = new \App\Helpers\DataHelper();
+        $permissions = $helper->getPermissions(false, true);
+        foreach ($permissions as $perm) {
+            $permission = new \App\Permission();
+            $permission->name = $perm;
+            $permission->save();
+            $roleAdmin->permissions()->save($permission);
+        }
+
         $admin->roles()->save($roleAdmin);
         $editor->roles()->save($roleEditor);
     }
