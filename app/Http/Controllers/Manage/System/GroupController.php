@@ -28,7 +28,7 @@ class GroupController extends Controller
     }
 
     public function edit(Role $group) {
-        if ($group->id == 1) abort(403, 'Adminstrators Role cant be edit');
+        if ($group->name == 'Administator') abort(403, 'Adminstrators Role cant be edit');
 
         return view('manage.system.group.edit', [
             'group' => $group,
@@ -37,7 +37,7 @@ class GroupController extends Controller
     }
 
     public function update(Request $request, Role $group) {
-        if ($group->id == 1) abort(403, 'Adminstrators Role cant be edit');
+        if ($group->name == 'Administator') abort(403, 'Adminstrators Role cant be edit');
 
         $request->validate([
             'name' => ['required','min:3','max:100'],
@@ -54,7 +54,7 @@ class GroupController extends Controller
 
     public function destroy(Role $group)
     {
-        if ($group->id == 1) abort(403, 'Adminstrators Role cant be edit');
+        if ($group->name == 'Administator') abort(403, 'Adminstrators Role cant be edit');
 
         $group->delete();
         return redirect(route('manage.system.group.index'));

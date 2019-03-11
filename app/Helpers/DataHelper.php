@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Permission;
 use Illuminate\Support\Facades\Storage;
 
 class DataHelper {
@@ -35,6 +36,7 @@ class DataHelper {
         $path = app_path().'/Http/Controllers/Manage';
 
         $permissions = [];
+        $permissionsflatten = [];
         $objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach($objects as $name => $fObject){
             if ($fObject->isFile()) {
@@ -47,14 +49,34 @@ class DataHelper {
                 $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
                 foreach ($methods as $method) {
                     if ($method->class == (string)$class->name && $method->getName() != '__construct' && $method->class != 'App\Http\Controllers\Manage\Controller') {
-                        if ($flatten) {
-                            $permissions[] = 'manage.'.$namespace.'.'.$conBaseName.'.'.$method->getName();
-                        } else {
-                            $permissions[$namespace][$conBaseName][] = $method->getName();
-                        }
+                        $permissionsflatten[] = 'manage.'.$namespace.'.'.$conBaseName.'.'.$method->getName();
+                        $permissions[$namespace][$conBaseName][] = $method->getName();
                     }
                 }
             }
+        }
+
+        $dbPermissions = Permission::all()->pluck('name')->toArray();
+
+        $newPermissions = array_diff($permissionsflatten, $dbPermissions);
+        if (sizeof($newPermissions)) {
+            foreach ($newPermissions as $newPermission) {
+                $permission = new Permission();
+                $permission->name = $newPermission;
+                $permission->save();
+            }
+        }
+
+        $deletePermissions = array_diff($dbPermissions, $permissionsflatten);
+        if (sizeof($deletePermissions)) {
+            foreach ($deletePermissions as $deletePermission) {
+                $del = Permission::where('name', $deletePermission);
+                $del->delete();
+            }
+        }
+
+        if ($flatten) {
+            return $permissionsflatten;
         }
         return $permissions;
     }

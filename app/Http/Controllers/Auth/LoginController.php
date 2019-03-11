@@ -36,4 +36,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return Response
+     */
+    public function authenticate(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password'), 'deleted_at' => null])) {
+            return redirect()->intended('dashboard');
+        }
+    }
 }

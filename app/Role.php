@@ -18,10 +18,6 @@ class Role extends Model
 
     public function addPermissions($permissions) {
         if (!is_array($permissions)) return;
-
-        $permission = new Permission();
-        $readyForSync = $permission->makeActual($permissions);
-
-        return $this->permissions()->sync($readyForSync);
+        return $this->permissions()->sync(Permission::all()->whereIn('name', $permissions));
     }
 }
