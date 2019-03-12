@@ -2,6 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Permission;
+use Illuminate\Support\Facades\Storage;
+
 class DataHelper {
     protected $bannerKeywords = [];
     protected $rubricsDict;
@@ -26,5 +29,55 @@ class DataHelper {
             $this->rubricsDict = app()->get('RubricRepository')->getRubricDict();
         }
         return route('publication.show', ['rubric' => $this->rubricsDict->find($publication->rubric_id)->slug, 'publication' => $publication->slug]);
+    }
+
+    //ToDo add cache for this
+    public function getPermissions($allowCache = true, $flatten = false) {
+        $path = app_path().'/Http/Controllers/Manage';
+
+        $permissions = [];
+        $permissionsflatten = [];
+        $objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
+        foreach($objects as $name => $fObject){
+            if ($fObject->isFile()) {
+                if (! preg_match('/Controller\.php$/', $name)) { continue; }
+                $conBaseName = strtolower(str_replace('Controller', '', basename($name, '.php')));
+                $conClass = str_replace([app_path(),'/','.php'],['\App','\\',''], $fObject->getPathname());
+                $class = new \ReflectionClass($conClass);
+                $namespace = strtolower(str_replace('App\Http\Controllers\Manage\\', '', $class->getNamespaceName()));
+                if ($namespace == 'app\http\controllers\manage') $namespace = 'default';
+                $methods = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
+                foreach ($methods as $method) {
+                    if ($method->class == (string)$class->name && $method->getName() != '__construct' && $method->class != 'App\Http\Controllers\Manage\Controller') {
+                        $permissionsflatten[] = 'manage.'.$namespace.'.'.$conBaseName.'.'.$method->getName();
+                        $permissions[$namespace][$conBaseName][] = $method->getName();
+                    }
+                }
+            }
+        }
+
+        $dbPermissions = Permission::all()->pluck('name')->toArray();
+
+        $newPermissions = array_diff($permissionsflatten, $dbPermissions);
+        if (sizeof($newPermissions)) {
+            foreach ($newPermissions as $newPermission) {
+                $permission = new Permission();
+                $permission->name = $newPermission;
+                $permission->save();
+            }
+        }
+
+        $deletePermissions = array_diff($dbPermissions, $permissionsflatten);
+        if (sizeof($deletePermissions)) {
+            foreach ($deletePermissions as $deletePermission) {
+                $del = Permission::where('name', $deletePermission);
+                $del->delete();
+            }
+        }
+
+        if ($flatten) {
+            return $permissionsflatten;
+        }
+        return $permissions;
     }
 }

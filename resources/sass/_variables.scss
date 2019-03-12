@@ -18,3 +18,17 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$sizes: (0,10,15,20,25,30,50);
+$positions: ((t, 'top'),(l, 'left'),(b, 'bottom'),(r, 'right'));
+
+@each $size in $sizes {
+  @each $label, $position in $positions {
+    .m-#{$label}-#{$size} {
+      margin-#{$position}: $size + px;
+    }
+    .p-#{$label}-#{$size} {
+      padding-#{$position}: $size + px;
+    }
+  }
+}
