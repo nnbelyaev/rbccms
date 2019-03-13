@@ -27,6 +27,7 @@ class Datagrid
     protected $_allowMultiAction = true;
     protected $_autoFilterAllowed = true;
     protected $_columns = [];
+    protected $_conditions = [];
     protected $_dgFilter;
     protected $_id;
     protected $_primary;
@@ -45,23 +46,21 @@ class Datagrid
         'count_sum'  => false
     );
     protected $_itemValidCountPerPage = [20 => 20, 30 => 30, 50 => 50, 100 => 100, 200 => 200];
-    protected $_itemPerPage = 20;
     protected $_currentPage = 1;
     protected $_needReformat = false;
     protected $_readOnly = false;
     protected $_rulesMetadata = [];
     protected $_ruleNameColumnNameDelimiter = '___';
     protected $_select;
-    protected $_sortColumn;
-    protected $_sortOrder;
     protected $_table;
 
-    public function __construct($id, $table, array $columns = null, array $conditions = null)
+    public function __construct($id, $table, $columns = [], $conditions = [])
     {
         $this->_table  = $table;
         $this->_select = DB::query();
         $this->_select->from($this->_table);
-        $this->_columns   = $this->getTableInfo();
+        $this->_columns = $this->getTableInfo();
+        $this->_conditions = $conditions;
         $this->_id     = $id;
 
         if (!$columns) $columns = $this->_columns;
@@ -72,7 +71,13 @@ class Datagrid
             } catch (\Exception $e) {
             }
         }
-        dd($this->_select);
+        if (isset($this->_conditions['sort_column'])) {
+            $this->_select->orderBy($this->_conditions['sort_column'], isset($this->_conditions['sort_order']) ? $this->_conditions['sort_order'] : 'asc');
+        }
+        $this->_select->limit(20);
+        if (isset($this->_columns['deleted_at'])) {
+            $this->_select->whereNull('deleted_at');
+        }
     }
 
     public function getTableInfo() {
@@ -213,20 +218,12 @@ class Datagrid
         );
     }
 
-    public function getSortColumn() {
-        return $this->_sortColumn;
-    }
-
-    public function getSortOrder() {
-        return $this->_sortOrder;
-    }
-
     public function getItemCountPerPage() {
-        return $this->_itemPerPage;
+        return $this->_select->limit;
     }
 
     public function setItemCountPerPage($num) {
-        $this->_itemPerPage = $num;
+        $this->_select->limit($num);
     }
 
     public function getCurrentPageNumber() {
@@ -243,11 +240,8 @@ class Datagrid
         }
         if (array_key_exists('sort_column', $params) && array_key_exists('sort_order', $params)) {
             if (isset($this->_columns[$params['sort_column']]) && $this->_columns[$params['sort_column']]['sortable']) {
-                $this->_sortColumn = $params['sort_column'];
-                $this->_sortOrder  = ('desc' == strtolower((string) $params['sort_order'])) ? 'desc' : 'asc';
-            } else {
-                $this->_sortColumn = null;
-                $this->_sortOrder  = null;
+                $order = ('desc' == strtolower((string) $params['sort_order'])) ? 'desc' : 'asc';
+                $this->_select->orderBy($params['sort_column'], $order);
             }
         }
         if (isset($params['filter']) && ($filter = $this->getDgFilter())) {
@@ -280,5 +274,9 @@ class Datagrid
 
     public function getSelect() {
         return $this->_select;
+    }
+
+    public function get() {
+        dd($this->_select);
     }
 }

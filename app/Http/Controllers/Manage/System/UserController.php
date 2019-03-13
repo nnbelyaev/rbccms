@@ -26,7 +26,7 @@ class UserController extends Controller
                 ],
 
             ],
-            ['sort_column' => 'user_name', 'sort_order' => 'asc']
+            ['sort_column' => 'name', 'sort_order' => 'asc']
         );
         return $datagrid;
     }
@@ -41,8 +41,6 @@ class UserController extends Controller
         } else {
             $datagrid->setConditions($request->session()->get($dgId.'_nav'));
         }
-        $res = $datagrid->get((int)$request->get('page'));
-
         return view('manage.system.user.indexdatagrid', [
             'datagrid' => $datagrid,
             'dgToolbar' => $this->datagridToolbar()
