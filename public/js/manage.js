@@ -12826,9 +12826,9 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\PhpstormProjects\la.rbc.ua\resources\js\manage.js */"./resources/js/manage.js");
-__webpack_require__(/*! C:\Users\User\PhpstormProjects\la.rbc.ua\resources\sass\front.scss */"./resources/sass/front.scss");
-module.exports = __webpack_require__(/*! C:\Users\User\PhpstormProjects\la.rbc.ua\resources\sass\manage.scss */"./resources/sass/manage.scss");
+__webpack_require__(/*! C:\Users\Belyaev\PhpstormProjects\la.rbc.ua\resources\js\manage.js */"./resources/js/manage.js");
+__webpack_require__(/*! C:\Users\Belyaev\PhpstormProjects\la.rbc.ua\resources\sass\front.scss */"./resources/sass/front.scss");
+module.exports = __webpack_require__(/*! C:\Users\Belyaev\PhpstormProjects\la.rbc.ua\resources\sass\manage.scss */"./resources/sass/manage.scss");
 
 
 /***/ })

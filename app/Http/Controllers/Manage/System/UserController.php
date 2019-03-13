@@ -2,18 +2,55 @@
 
 namespace App\Http\Controllers\Manage\System;
 
+use App\Datagrid\Datagrid;
 use App\Http\Controllers\Manage\Controller;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function getDatagrid()
     {
+        $datagrid = new Datagrid('dgUser', with(new User())->getTable(),
+            [
+                'name' => ['width' => '250px'],
+                'email' => ['width' => '250px'],
+                'roles' => [
+                    'sql_expr' => '1',
+                    'relation' => 'belongsToMany',
+                    'type' => 'select',
+                    'multiOptions' => Role::all()->pluck('name', 'id')
+                ],
+
+            ],
+            ['sort_column' => 'user_name', 'sort_order' => 'asc']
+        );
+        return $datagrid;
+    }
+
+    public function index(Request $request)
+    {
+        $datagrid = $this->getDatagrid();
+        $dgId = $datagrid->getId();
+
+        if (($dgConditions =  $request->get($dgId))) {
+            $request->session()->put($dgId.'_nav', $datagrid->setConditions($dgConditions)->getConditions());
+        } else {
+            $datagrid->setConditions($request->session()->get($dgId.'_nav'));
+        }
+        $res = $datagrid->get((int)$request->get('page'));
+
+        return view('manage.system.user.indexdatagrid', [
+            'datagrid' => $datagrid,
+            'dgToolbar' => $this->datagridToolbar()
+        ]);
+        /*
         $users = User::paginate(15);
         return view('manage.system.user.index', compact('users'));
+        */
     }
 
     public function create() {

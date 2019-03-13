@@ -13,6 +13,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $datagrid;
+
     /**
      * Create a new controller instance.
      *
@@ -36,5 +38,9 @@ class Controller extends BaseController
             abort(403);
         }
         return call_user_func_array([$this, $method], $parameters);
+    }
+
+    protected function datagridToolbar() {
+        return [];
     }
 }
